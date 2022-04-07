@@ -4,9 +4,29 @@ import PlantList from "./PlantList";
 import Search from "./Search";
 
 function PlantPage() {
+  const serverUrl = "http://localhost:6001";
   const [plantsArrayState, setPlantsArrayState] = useState([]);
 
-  const serverUrl = "http://localhost:6001";
+  function handleNewPlant(e) {
+    e.preventDefault();
+    const newPlantData = {
+      name: e.target.name.value,
+      image: e.target.image.value,
+      price: e.target.price.value,
+    };
+
+    fetch(`${serverUrl}/plants`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPlantData),
+    })
+      .then(r => r.json())
+      .then(newPlantFromServer =>
+        setPlantsArrayState([...plantsArrayState, newPlantFromServer])
+      );
+  }
 
   useEffect(() => {
     fetch(`${serverUrl}/plants`)
@@ -16,7 +36,7 @@ function PlantPage() {
 
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm newPlantSubmit={handleNewPlant} />
       <Search />
       <PlantList plants={plantsArrayState} />
     </main>

@@ -38,7 +38,7 @@ function PlantPage() {
   return (
     <main>
       <NewPlantForm newPlantSubmit={handleNewPlant} />
-      <Search searchTerm={searchTermState} setSearchTerm={setSearchTermState} />
+      <Search setSearchTerm={setSearchTermState} />
       <PlantList plants={plantsArrayState} searchTerm={searchTermState} />
     </main>
   );

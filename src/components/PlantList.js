@@ -5,19 +5,18 @@ function PlantList({ plants, searchTerm }) {
   return (
     <ul className="cards">
       {plants
-        .filter(plant => {
-          if (searchTerm === "") {
-            return plant;
-          } else if (
+        .filter(plant =>
+          // If search term is empty, return all plants
+          searchTerm === ""
+            ? plant
+            : // If search term is contained in plant name, return the plant
             plant.name.toLowerCase().includes(searchTerm.toLowerCase())
-          ) {
-            return plant;
-          }
-          return null;
-        })
-        .map(plant => {
-          return <PlantCard key={plant.id} plant={plant} />;
-        })}
+            ? plant
+            : null
+        )
+        .map(plant => (
+          <PlantCard key={plant.id} plant={plant} />
+        ))}
     </ul>
   );
 }

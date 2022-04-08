@@ -6,6 +6,7 @@ import Search from "./Search";
 function PlantPage() {
   const serverUrl = "http://localhost:6001";
   const [plantsArrayState, setPlantsArrayState] = useState([]);
+  const [searchTermState, setSearchTermState] = useState("");
 
   function handleNewPlant(e) {
     e.preventDefault();
@@ -37,8 +38,8 @@ function PlantPage() {
   return (
     <main>
       <NewPlantForm newPlantSubmit={handleNewPlant} />
-      <Search />
-      <PlantList plants={plantsArrayState} />
+      <Search searchTerm={searchTermState} setSearchTerm={setSearchTermState} />
+      <PlantList plants={plantsArrayState} searchTerm={searchTermState} />
     </main>
   );
 }

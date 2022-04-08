@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function PlantCard({ plant: { id, name, image, price }, stockClick }) {
   const [priceStockState, setPriceStockState] = useState(price);

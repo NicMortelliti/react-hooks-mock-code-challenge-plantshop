@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PlantCard({ plant: { id, name, image, price }, stockClick }) {
+function PlantCard({ plant: { id, name, image, price } }) {
   const [priceStockState, setPriceStockState] = useState(price);
 
   function handleStockUpdate(e) {
